@@ -1,4 +1,4 @@
-const API = "https://https://rickandmortyapi.com/api/characters/";
+const API = "https://rickandmortyapi.com/api/character/";
 
 axios.get(url)
 .then(resultado=>{
