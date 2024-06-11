@@ -1,6 +1,23 @@
-.boton{
+.boton {
     color: white;
     background-color: rgb(26, 134, 161);
-    align-items: center;
     text-align: center;
-};
+}
+
+.titulo {
+    text-align: center;
+    color: blue;
+    background-color: azure;
+}
+
+.body {
+    background-color: blue;
+}
+
+.boton:hover{
+   background-color: blueviolet;
+}
+
+.botones{
+    align-items: center;
+}

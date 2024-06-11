@@ -1,14 +1,10 @@
 const API = "https://rickandmortyapi.com/api/character/";
 
 axios.get(API)
-.then(resultado=>{
-    const dato = resultado.data.results;
-    
-    dato.forEach(personaje => {
-        console.log('Nombre: ', personaje.name);
-        console.log('Status: ', personaje.status);
-    });
+.then(respuesta=>{
+    const dato = respuesta.data.results;
+    console.log('Los datos son: ', dato)
 })
 .catch(error=>{
-    console.log('El error es ', error)
+    console.log('Error en ', error);
 })

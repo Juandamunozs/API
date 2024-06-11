@@ -3,5 +3,5 @@ function fetch(){
 }
 
 function axios(){
-    
+    window.open('./axios/axios.html?')
 }
