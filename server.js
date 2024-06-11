@@ -1,14 +1,14 @@
 const express = require('express');
 
-
 const app = express();
 
-app.get('/', (req, res)=>{
-    res.send("Activo")
-})
+const routes = require('./movies/router/index')
+
+app.use(routes);
 
 const port = 3200;
 
 app.listen(port, ()=>{
     console.log('Corriendo en el puerto ', 3200)
 })
+
