@@ -1,9 +1,7 @@
-const express = require('express');
+const router = require('express').Router();
 
-const router = express.Router();
+const route_mascota = require('./mascota');
 
-router.get('/', (req, res)=>{
-    res.send("Activo... 🌐🗄️")
-})
+router.use('/mascota', route_mascota);
 
-module.exports = router
+module.exports = router;

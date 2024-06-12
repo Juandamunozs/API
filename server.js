@@ -1,14 +1,16 @@
 const express = require('express');
+const router = require('./movies/router/index');
 
 const app = express();
 
-const routes = require('./movies/router/index')
-
-app.use(routes);
-
 const port = 3200;
 
-app.listen(port, ()=>{
-    console.log('Corriendo en el puerto ', 3200)
+app.get('/', (req, res)=>{
+    res.send('Servidor levantado')
 })
 
+app.use('/api', router);
+
+app.listen(port, ()=>{
+   console.log('Servidor levantado en el puerto ', port);
+})

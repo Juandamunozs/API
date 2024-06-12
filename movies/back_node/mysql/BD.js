@@ -1,5 +1,8 @@
-
+const express = require('express');
 const mysql = require('mysql');
+
+const router = express.Router();
+
 
 const BD = {
   host: 'localhost',
@@ -11,31 +14,38 @@ const BD = {
 
 const conexion = mysql.createConnection(BD);
 
-conexion.connect((error) => {
-  if (error) {
-    console.error('Error connecting to database:', error);
-    return;
-  }
-
-  console.log('Conexion exitosa a la base de datos', BD.database);
-
-
-  const query = `SELECT * FROM doctor`;
-
-  conexion.query(query, (err, results) => {
-    if (err) {
-      console.error('Error executing query:', err);
-      return; 
+router.get('/', (req, res) => {
+  conexion.connect((error) => {
+    if (error) {
+      console.error('Error conectando a la base de datos:', error);
+      res.status(500).send('Error conectando a la base de datos');
+      return;
     }
 
-    console.log('Tabla doctor:\n', results); 
+    console.log('Conexión exitosa a la base de datos', BD.database);
 
-    conexion.end((err) => {
+    const query = `SELECT * FROM doctor`;
+
+    conexion.query(query, (err, results) => {
       if (err) {
-        console.error('Error ending connection:', err);
-      } else {
-        console.log('Conexion cerrada exitosamente');
+        console.error('Error ejecutando la consulta:', err);
+        res.status(500).send('Error ejecutando la consulta');
+        return; 
       }
+
+      console.log('Tabla doctor:\n', results); 
+
+      conexion.end((err) => {
+        if (err) {
+          console.error('Error al cerrar la conexión:', err);
+        } else {
+          console.log('Conexión cerrada exitosamente');
+        }
+      });
+
+      res.json(results); // Devolver resultados como JSON
     });
   });
 });
+
+module.exports = router;
